@@ -1,0 +1,552 @@
+{
+    "nodes": [
+        {
+            "data": {
+                "id": "G",
+                "shortname": "G",
+                "name": "Glucoseasdasdasd",
+                "shape": "ellipse",
+                "weight": 90,
+                "color": "grey"
+            },
+            "position": {
+                "x": 334.79707710758015,
+                "y": 636.791616759221
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "id": "As_A",
+                "shortname": "As A",
+                "name": "Aspartic Acid",
+                "shape": "triangle",
+                "weight": 34,
+                "color": "pink"
+            },
+            "position": {
+                "x": 341.01828021111515,
+                "y": 499.99619754001515
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "id": "S",
+                "shortname": "S",
+                "name": "Serine",
+                "shape": "triangle",
+                "weight": 33,
+                "color": "pink"
+            },
+            "position": {
+                "x": 352.2722886132335,
+                "y": 438.4143732156623
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "id": "F",
+                "shortname": "F",
+                "name": "Fructose",
+                "shape": "ellipse",
+                "weight": 92,
+                "color": "grey"
+            },
+            "position": {
+                "x": 176.96315354302303,
+                "y": 544.2014997831445
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "id": "Glut_A",
+                "shortname": "Glut A",
+                "name": "Glutamic Acid",
+                "shape": "triangle",
+                "weight": 40,
+                "color": "pink"
+            },
+            "position": {
+                "x": 412.42499778092264,
+                "y": 474.27610252694825
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "id": "Gly",
+                "shortname": "Gly",
+                "name": "Glycine",
+                "shape": "triangle",
+                "weight": 32,
+                "color": "pink"
+            },
+            "position": {
+                "x": 381.5950680766875,
+                "y": 549.0044711024284
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "id": "CA",
+                "shortname": "CA",
+                "name": "Citric Acid",
+                "shape": "triangle",
+                "weight": 56,
+                "color": "pink"
+            },
+            "position": {
+                "x": 428.0695991188224,
+                "y": 359.7125568189449
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "id": "MA",
+                "shortname": "MA",
+                "name": "Malic Acid",
+                "shape": "rectangle",
+                "weight": 35,
+                "color": "yellow"
+            },
+            "position": {
+                "x": 237.4300554190781,
+                "y": 638.4684124634518
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "id": "Na",
+                "shortname": "Na",
+                "name": "Sodium",
+                "shape": "star",
+                "weight": 36,
+                "color": "brown"
+            },
+            "position": {
+                "x": 210.01341678962496,
+                "y": 414.4635560305425
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "id": "Cl",
+                "shortname": "Cl",
+                "name": "Chloride",
+                "shape": "star",
+                "weight": 35,
+                "color": "brown"
+            },
+            "position": {
+                "x": 456.90560435801876,
+                "y": 588.063173660661
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "id": "A",
+                "shortname": "A",
+                "name": "Alanine",
+                "shape": "ellipse",
+                "weight": 32,
+                "color": "pink"
+            },
+            "position": {
+                "x": 491.9908925701499,
+                "y": 485.73490365703617
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "id": "FC",
+                "shortname": "FC",
+                "name": "Fruit Color",
+                "shape": "rectangle",
+                "weight": 40,
+                "color": "red"
+            },
+            "position": {
+                "x": 281.9841776204641,
+                "y": 478.37896235322313
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "id": "FT",
+                "shortname": "FT",
+                "name": "Fruit Taste",
+                "shape": "rectangle",
+                "weight": 41,
+                "color": "red"
+            },
+            "position": {
+                "x": 282.612036389938,
+                "y": 546.8637456768073
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "id": "FS",
+                "shortname": "FS",
+                "name": "Fruit Smell",
+                "shape": "rectangle",
+                "weight": 41,
+                "color": "red"
+            },
+            "position": {
+                "x": 295.76852786933785,
+                "y": 377.9041552537373
+            },
+            "group": "nodes",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        }
+    ],
+    "edges": [
+        {
+            "data": {
+                "source": "G",
+                "target": "F",
+                "width": 4,
+                "id": "e0"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "source": "G",
+                "target": "MA",
+                "width": 1,
+                "id": "e1"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": "dashed"
+        },
+        {
+            "data": {
+                "source": "G",
+                "target": "FC",
+                "width": 2,
+                "id": "e2"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "source": "F",
+                "target": "FC",
+                "width": 2,
+                "id": "e3"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "source": "F",
+                "target": "FT",
+                "width": 1,
+                "id": "e4"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "source": "G",
+                "target": "FT",
+                "width": 1,
+                "id": "e5"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "source": "FC",
+                "target": "FT",
+                "width": 4,
+                "id": "e6"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "source": "FC",
+                "target": "FS",
+                "width": 2,
+                "id": "e7"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "source": "F",
+                "target": "MA",
+                "width": 1,
+                "id": "e8"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": "dashed"
+        },
+        {
+            "data": {
+                "source": "G",
+                "target": "Gly",
+                "width": 1,
+                "id": "e9"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "source": "As_A",
+                "target": "Gly",
+                "width": 2,
+                "id": "e10"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "source": "S",
+                "target": "As_A",
+                "width": 1,
+                "id": "e11"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "source": "S",
+                "target": "Glut_A",
+                "width": 1,
+                "id": "e12"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        },
+        {
+            "data": {
+                "source": "Glut_A",
+                "target": "As_A",
+                "width": 1,
+                "id": "e13"
+            },
+            "position": {},
+            "group": "edges",
+            "removed": false,
+            "selected": false,
+            "selectable": true,
+            "locked": false,
+            "grabbed": false,
+            "grabbable": true,
+            "classes": ""
+        }
+    ]
+}

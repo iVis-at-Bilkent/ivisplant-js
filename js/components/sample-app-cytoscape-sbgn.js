@@ -19,7 +19,7 @@ var correlationNetworkStyleSheet = cytoscape.stylesheet()
             'line-color': 'grey',
             'target-arrow-color': 'grey'
         })
-        .selector(':mouseover')
+        .selector(':selected')
         .css({
             'border-width': 2,
             'background-color': 'orange',
@@ -31,6 +31,39 @@ var correlationNetworkStyleSheet = cytoscape.stylesheet()
             'line-style': 'dashed'
         }
         ); // end of sbgnStyleSheet
+
+var coseOptions = {
+    name: 'cose',
+    padding: 2,
+    // Whether to animate while running the layout
+    animate: true,
+    // Number of iterations between consecutive screen positions update (0 -> only updated on the end)
+    refresh: 4,
+    // Whether to fit the network view after when done
+    fit: true,
+    // Whether to randomize node positions on the beginning
+    randomize: true,
+    // Node repulsion (non overlapping) multiplier
+    nodeRepulsion: 400000,
+    // Node repulsion (overlapping) multiplier
+    nodeOverlap: 10,
+    // Ideal edge (non nested) length
+    //idealEdgeLength     : 30,
+    // Divisor to compute edge forces
+    edgeElasticity: 100,
+    // Nesting factor (multiplier) to compute ideal edge length for nested edges
+    nestingFactor: 5,
+    // Gravity force (constant)
+    gravity: 250,
+    // Maximum number of iterations to perform
+    numIter: 200,
+    // Initial temperature (maximum node displacement)
+    initialTemp: 300,
+    // Cooling factor (how the temperature is reduced between consecutive iterations
+    coolingFactor: 0.97,
+    // Lower temperature threshold (below this point the layout will end)
+    minTemp: 1.0
+}
 
 var NotyView = Backbone.View.extend({
     render: function () {
@@ -81,23 +114,40 @@ var SBGNContainer = Backbone.View.extend({
             ready: function ()
             {
                 window.cy = this;
+                var tapped;
+
+                var panProps = ({
+                    fitPadding: 15,
+                });
+                container.cytoscapePanzoom(panProps);
 
 
+                cy.on('tap', 'node', 'null', function (evt) {
+                    var node = evt.cyTarget;
+                    tapped = node.id();
+                    cy.$('#' + node.id()).select();
+                });
+
+                cy.on('mouseover', 'node', null, function (evt) {
+                    var node = evt.cyTarget;
+                    cy.$('#' + node.id()).select();
+                });
+
+                cy.on('mouseout', 'node', null, function (evt) {
+                    var node = evt.cyTarget;
+                    if (tapped != node.id())
+                        cy.$('#' + node.id()).unselect();
+                });
             }
         };
-
+        
         container.html("");
         container.cy(cyOptions);
-        container.cy.on('mouseover', 'node', null, function (evt) {
-            var node = evt.cyTarget;
-            cy.$('#' + node.id()).select();
-        });
 
-        container.cy.on('mouseout', 'node', null, function (evt) {
-            var node = evt.cyTarget;
-            cy.$('#' + node.id()).unselect();
-        });
         return this;
+    },
+    setCoseLayout: function () {
+        cy.layout(coseOptions);
     }
 });
 

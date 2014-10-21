@@ -1,6 +1,6 @@
 $(function () { // on dom ready
 
-    $('#cy').cytoscape({
+    $('#sbgn-network-container').cytoscape({
         layout: {
             name: 'cose',
             padding: 2,

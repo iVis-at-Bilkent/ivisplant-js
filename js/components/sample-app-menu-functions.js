@@ -6,19 +6,31 @@ var setFileContent = function (fileName) {
     span.appendChild(document.createTextNode(fileName));
 }
 
+
 $(document).ready(function () {
-    /*var xmlObject = loadXMLDoc('samples/activated_stat1alpha_induction_of_the_irf1_gene.xml');
-     
-     setFileContent("activated_stat1alpha_induction_of_the_irf1_gene.sbgnml");
-     
-     (new SBGNContainer({
-     el: '#sbgn-network-container',
-     model : {cytoscapeJsGraph : sbgnmlToJson.convert(xmlObject)}
-     })).render();
-     
-     var sbgnLayoutProp = new SBGNLayout({
-     el: '#sbgn-layout-table'
-     });*/
+    var jsonObject;
+    $.ajax({
+        url: "samples/correlationNetwork.json",
+        type: 'GET',
+        async: false,
+        cache: false,
+        success: function (data)
+        {
+            jsonObject = data;
+        }
+    });
+
+    setFileContent("samples/correlationNetwork.json");
+
+    var sbgnContainer = new SBGNContainer({
+        el: '#sbgn-network-container',
+        model: {cytoscapeJsGraph: jsonObject}
+    })
+    sbgnContainer.render();
+
+    var sbgnLayoutProp = new SBGNLayout({
+        el: '#sbgn-layout-table'
+    });
 
     $("body").on("change", "#file-input", function (e) {
         if ($("#file-input").val() == "") {
@@ -83,24 +95,24 @@ $(document).ready(function () {
      });*/
 
     $("#load-sample0").click(function (e) {/*
-        var file = new Blob(['samples/Deneme.json'], {
-            type: "text/plain;charset=utf-8;",
-        });
-        var textType = /text.*//*
-
-        var reader = new FileReader();
-        var result = "";
-
-        
-            (new SBGNContainer({
-                el: '#sbgn-network-container',
-                model: {cytoscapeJsGraph:
-                            JSON.parse(this.result)}
-            })).render();
-        
-        reader.readAsText(file);
-        setFileContent(file.name);
-        $("#file-input").val("");*/
+     var file = new Blob(['samples/Deneme.json'], {
+     type: "text/plain;charset=utf-8;",
+     });
+     var textType = /text.*//*
+      
+      var reader = new FileReader();
+      var result = "";
+      
+      
+      (new SBGNContainer({
+      el: '#sbgn-network-container',
+      model: {cytoscapeJsGraph:
+      JSON.parse(this.result)}
+      })).render();
+      
+      reader.readAsText(file);
+      setFileContent(file.name);
+      $("#file-input").val("");*/
     });
 
     $("#hide-selected").click(function (e) {
@@ -136,7 +148,8 @@ $(document).ready(function () {
     });
 
     $("#perform-layout").click(function (e) {
-        cy.layout();
+        sbgnLayoutProp.applyLayout();
+        //cy.layout(coseOptions);
     });
 
     $("#save-as-png").click(function (evt) {
@@ -149,20 +162,7 @@ $(document).ready(function () {
     });
 
     $("#show-labels-full").click(function (evt) {
-        cy.selector('node') // nasıl yapılacağını öğren ************************
-                .css({
-                    'shape': 'ellipse',
-                    'width': 'mapData(weight, 30, 100,10, 80)',
-                    'height': 'mapData(weight, 30, 100, 10, 80)',
-                    'content': 'sdsdsds',
-                    'text-valign': 'bottom',
-                    'color': 'black',
-                    'border-color': 'data(color)',
-                    'border-width': 2
-                            //'background-color': 'data(color)'
-                })
-
-
+        //TODO 
     });
 
     $("#show-labels-shortened").click(function (evt) {

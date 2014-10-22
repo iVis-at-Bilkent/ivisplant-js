@@ -1,36 +1,35 @@
 var correlationNetworkStyleSheet = cytoscape.stylesheet()
         .selector('node')
-        .css({
-            'shape': 'ellipse',
-            'width': 'mapData(weight, 30, 100,10, 80)',
-            'height': 'mapData(weight, 30, 100, 10, 80)',
-            'content': 'data(id)',
-            'text-valign': 'bottom',
-            'color': 'black',
-            'border-color': 'data(color)',
-            'border-width': 2
-                    //'background-color': 'data(color)'
-        })
-        .selector('edge')
-        .css({
-            'width': 'mapData(width, 1, 4, 1, 6)',
-            'target-arrow-shape': 'triangle',
-            'source-arrow-color': 'grey',
-            'line-color': 'grey',
-            'target-arrow-color': 'grey'
-        })
-        .selector(':selected')
-        .css({
-            'border-width': 2,
-            'background-color': 'orange',
-            'border-color': 'orange',
-            'content': 'data(name)'
-        })
-        .selector('edge.dashed')
-        .css({
-            'line-style': 'dashed'
-        }
-        ); // end of sbgnStyleSheet
+                .css({
+                    'shape': 'ellipse',
+                    'width': 'mapData(weight, 30, 100,10, 80)',
+                    'height': 'mapData(weight, 30, 100, 10, 80)',
+                    'content': 'data(shortname)',
+                    'text-valign': 'bottom',
+                    'color': 'black',
+                    'border-color': 'data(color)',
+                    'border-width': 2,
+                    'background-color': 'lightgrey'
+                })
+                .selector('edge')
+                .css({
+                    'width': 'mapData(width, 1, 4, 1, 6)',
+                    'target-arrow-shape': 'triangle',
+                    'source-arrow-color': 'grey',
+                    'line-color': 'grey',
+                    'target-arrow-color': 'grey'
+                })
+                .selector(':selected')
+                .css({
+                    'border-width': 2,
+                    'background-color': 'orange',
+                    'content': 'data(name)'.replace("_", " ")
+                })
+                .selector('edge.dashed')
+                .css({
+                    'line-style': 'dashed'
+                }
+                ); // end of sbgnStyleSheet
 
 var coseOptions = {
     name: 'cose',

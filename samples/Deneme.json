@@ -3,14 +3,15 @@
         {
             "data": {
                 "id": "G",
+                "shortname": "G",
                 "name": "Glucose",
                 "shape": "ellipse",
                 "weight": 90,
-                "color": "lightgrey"
+                "color": "grey"
             },
             "position": {
-                "x": 167.93541012602108,
-                "y": 545.8688953329954
+                "x": 127.07247682064117,
+                "y": 592.4396075087665
             },
             "group": "nodes",
             "removed": false,
@@ -23,15 +24,16 @@
         },
         {
             "data": {
-                "id": "As A",
+                "id": "As_A",
+                "shortname": "As A",
                 "name": "Aspartic Acid",
                 "shape": "triangle",
                 "weight": 34,
                 "color": "pink"
             },
             "position": {
-                "x": 429.06120502808335,
-                "y": 573.2071520442447
+                "x": 386.4931251387962,
+                "y": 642.5963285478059
             },
             "group": "nodes",
             "removed": false,
@@ -45,14 +47,15 @@
         {
             "data": {
                 "id": "S",
+                "shortname": "S",
                 "name": "Serine",
                 "shape": "triangle",
                 "weight": 33,
                 "color": "pink"
             },
             "position": {
-                "x": 397.24585752184066,
-                "y": 507.9532196803518
+                "x": 555.5055461912657,
+                "y": 641.086212955081
             },
             "group": "nodes",
             "removed": false,
@@ -66,14 +69,15 @@
         {
             "data": {
                 "id": "F",
+                "shortname": "F",
                 "name": "Fructose",
                 "shape": "ellipse",
                 "weight": 92,
-                "color": "lightgrey"
+                "color": "grey"
             },
             "position": {
-                "x": 230.34302528297377,
-                "y": 352.6497949248057
+                "x": 239.28053362910472,
+                "y": 413.39114338623426
             },
             "group": "nodes",
             "removed": false,
@@ -86,15 +90,16 @@
         },
         {
             "data": {
-                "id": "Glut A",
+                "id": "Glut_A",
+                "shortname": "Glut A",
                 "name": "Glutamic Acid",
                 "shape": "triangle",
                 "weight": 40,
                 "color": "pink"
             },
             "position": {
-                "x": 487.0513739519472,
-                "y": 517.8745529246637
+                "x": 506.74319466796504,
+                "y": 580.9454918634844
             },
             "group": "nodes",
             "removed": false,
@@ -108,14 +113,15 @@
         {
             "data": {
                 "id": "Gly",
+                "shortname": "Gly",
                 "name": "Glycine",
                 "shape": "triangle",
                 "weight": 32,
                 "color": "pink"
             },
             "position": {
-                "x": 299.24595163643426,
-                "y": 622.1305649197353
+                "x": 255.8374722272972,
+                "y": 642.7612501508577
             },
             "group": "nodes",
             "removed": false,
@@ -129,14 +135,15 @@
         {
             "data": {
                 "id": "CA",
+                "shortname": "CA",
                 "name": "Citric Acid",
                 "shape": "triangle",
                 "weight": 56,
                 "color": "pink"
             },
             "position": {
-                "x": 335.44107660995803,
-                "y": 510.5872789428188
+                "x": 502.1767538157844,
+                "y": 388.3448665882256
             },
             "group": "nodes",
             "removed": false,
@@ -150,14 +157,15 @@
         {
             "data": {
                 "id": "MA",
+                "shortname": "MA",
                 "name": "Malic Acid",
                 "shape": "rectangle",
                 "weight": 35,
                 "color": "yellow"
             },
             "position": {
-                "x": 141.44955724047074,
-                "y": 431.00221915888545
+                "x": 102.1283563132611,
+                "y": 456.0076149141136
             },
             "group": "nodes",
             "removed": false,
@@ -171,14 +179,15 @@
         {
             "data": {
                 "id": "Na",
+                "shortname": "Na",
                 "name": "Sodium",
                 "shape": "star",
                 "weight": 36,
                 "color": "brown"
             },
             "position": {
-                "x": 275.4700526749749,
-                "y": 558.3009909287576
+                "x": 419.42227059240395,
+                "y": 445.90295499289005
             },
             "group": "nodes",
             "removed": false,
@@ -192,14 +201,15 @@
         {
             "data": {
                 "id": "Cl",
+                "shortname": "Cl",
                 "name": "Chloride",
                 "shape": "star",
                 "weight": 35,
                 "color": "brown"
             },
             "position": {
-                "x": 479.42434760346566,
-                "y": 447.8895179315246
+                "x": 342.937783119509,
+                "y": 368.5487987628418
             },
             "group": "nodes",
             "removed": false,
@@ -213,14 +223,15 @@
         {
             "data": {
                 "id": "A",
+                "shortname": "A",
                 "name": "Alanine",
                 "shape": "ellipse",
                 "weight": 32,
                 "color": "pink"
             },
             "position": {
-                "x": 496.14241611172065,
-                "y": 603.5527935433046
+                "x": 522.868873693884,
+                "y": 511.56012423325024
             },
             "group": "nodes",
             "removed": false,
@@ -234,14 +245,15 @@
         {
             "data": {
                 "id": "FC",
+                "shortname": "FC",
                 "name": "Fruit Color",
                 "shape": "rectangle",
                 "weight": 40,
                 "color": "red"
             },
             "position": {
-                "x": 359.3528452600566,
-                "y": 441.3627498963412
+                "x": 281.9841776204641,
+                "y": 526.6608964739711
             },
             "group": "nodes",
             "removed": false,
@@ -255,14 +267,15 @@
         {
             "data": {
                 "id": "FT",
+                "shortname": "FT",
                 "name": "Fruit Taste",
                 "shape": "rectangle",
                 "weight": 41,
                 "color": "red"
             },
             "position": {
-                "x": 273.135114711547,
-                "y": 443.39710439306106
+                "x": 386.47433653340755,
+                "y": 549.6708348698742
             },
             "group": "nodes",
             "removed": false,
@@ -276,14 +289,15 @@
         {
             "data": {
                 "id": "FS",
+                "shortname": "FS",
                 "name": "Fruit Smell",
                 "shape": "rectangle",
                 "weight": 41,
                 "color": "red"
             },
             "position": {
-                "x": 428.89228919216873,
-                "y": 368.5537321486339
+                "x": 217.73144830208238,
+                "y": 507.0302581348074
             },
             "group": "nodes",
             "removed": false,
@@ -468,7 +482,7 @@
         },
         {
             "data": {
-                "source": "As A",
+                "source": "As_A",
                 "target": "Gly",
                 "width": 2,
                 "id": "e10"
@@ -486,7 +500,7 @@
         {
             "data": {
                 "source": "S",
-                "target": "As A",
+                "target": "As_A",
                 "width": 1,
                 "id": "e11"
             },
@@ -503,7 +517,7 @@
         {
             "data": {
                 "source": "S",
-                "target": "Glut A",
+                "target": "Glut_A",
                 "width": 1,
                 "id": "e12"
             },
@@ -519,8 +533,8 @@
         },
         {
             "data": {
-                "source": "Glut A",
-                "target": "As A",
+                "source": "Glut_A",
+                "target": "As_A",
                 "width": 1,
                 "id": "e13"
             },

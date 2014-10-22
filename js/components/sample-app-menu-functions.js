@@ -10,7 +10,7 @@ var setFileContent = function (fileName) {
 $(document).ready(function () {
     var jsonObject;
     $.ajax({
-        url: "samples/correlationNetwork.json",
+        url: "samples/Deneme.json",
         type: 'GET',
         async: false,
         cache: false,
@@ -20,7 +20,7 @@ $(document).ready(function () {
         }
     });
 
-    setFileContent("samples/correlationNetwork.json");
+    //setFileContent("correlationNetwork.json");
 
     var sbgnContainer = new SBGNContainer({
         el: '#sbgn-network-container',
@@ -94,25 +94,49 @@ $(document).ready(function () {
      });
      });*/
 
-    $("#load-sample0").click(function (e) {/*
-     var file = new Blob(['samples/Deneme.json'], {
-     type: "text/plain;charset=utf-8;",
-     });
-     var textType = /text.*//*
-      
-      var reader = new FileReader();
-      var result = "";
-      
-      
-      (new SBGNContainer({
-      el: '#sbgn-network-container',
-      model: {cytoscapeJsGraph:
-      JSON.parse(this.result)}
-      })).render();
-      
-      reader.readAsText(file);
-      setFileContent(file.name);
-      $("#file-input").val("");*/
+    $("#load-sample0").click(function (e) {
+        $.ajax({
+            url: "samples/correlationNetwork.json",
+            type: 'GET',
+            async: false,
+            cache: false,
+            success: function (data)
+            {
+                jsonObject = data;
+            }
+        });
+
+        //setFileContent("correlationNetwork.json");
+
+        var sbgnContainer = new SBGNContainer({
+            el: '#sbgn-network-container',
+            model: {cytoscapeJsGraph: jsonObject}
+        })
+        sbgnContainer.render();
+
+        var sbgnLayoutProp = new SBGNLayout({
+            el: '#sbgn-layout-table'
+        });
+
+        /*
+         var file = new Blob(['samples/Deneme.json'], {
+         type: "text/plain;charset=utf-8;",
+         });
+         var textType = /text.*//*
+          
+          var reader = new FileReader();
+          var result = "";
+          
+          
+          (new SBGNContainer({
+          el: '#sbgn-network-container',
+          model: {cytoscapeJsGraph:
+          JSON.parse(this.result)}
+          })).render();
+          
+          reader.readAsText(file);
+          setFileContent(file.name);
+          $("#file-input").val("");*/
     });
 
     $("#hide-selected").click(function (e) {
@@ -148,8 +172,8 @@ $(document).ready(function () {
     });
 
     $("#perform-layout").click(function (e) {
-        sbgnLayoutProp.applyLayout();
-        //cy.layout(coseOptions);
+        //sbgnLayoutProp.applyLayout();
+        cy.layout(coseOptions);
     });
 
     $("#save-as-png").click(function (evt) {
@@ -162,11 +186,25 @@ $(document).ready(function () {
     });
 
     $("#show-labels-full").click(function (evt) {
-        //TODO 
+        cy.style()
+                .selector('node')
+                .css({
+                    'content': 'data(name)',
+                })
+
+                .update() // update the elements in the graph with the new style
+                ;
     });
 
-    $("#show-labels-shortened").click(function (evt) {
-        $("#file-input").trigger('click');
+    $("#show-labels-short").click(function (evt) {
+        cy.style()
+                .selector('node')
+                .css({
+                    'content': 'data(shortname)',
+                })
+
+                .update() // update the elements in the graph with the new style
+                ;
     });
 
 

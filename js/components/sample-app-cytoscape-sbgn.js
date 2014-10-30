@@ -1,39 +1,55 @@
 var correlationNetworkStyleSheet = cytoscape.stylesheet()
+        .selector(":active")
+        .css({
+            "overlay-color": "orange",
+            "overlay-padding": 10,
+            "overlay-opacity": 0.3
+        })
+        .selector("core")
+        .css({
+            "selection-box-color": "orange",
+            "selection-box-opacity": 0.5
+        })
         .selector('node')
-                .css({
-                    'shape': 'ellipse',
-                    'width': 'mapData(weight, 30, 100,10, 80)',
-                    'height': 'mapData(weight, 30, 100, 10, 80)',
-                    'content': 'data(shortname)',
-                    'text-valign': 'bottom',
-                    'color': 'black',
-                    'border-color': 'data(color)',
-                    'border-width': 2,
-                    'background-color': 'lightgrey'
-                })
-                .selector('edge')
-                .css({
-                    'width': 'mapData(width, 1, 4, 1, 6)',
-                    'target-arrow-shape': 'triangle',
-                    'source-arrow-color': 'grey',
-                    'line-color': 'grey',
-                    'target-arrow-color': 'grey'
-                })
-                .selector(':selected')
-                .css({
-                    'border-width': 2,
-                    'background-color': 'orange',
-                    'content': 'data(name)'.replace("_", " ")
-                })
-                .selector('edge.dashed')
-                .css({
-                    'line-style': 'dashed'
-                }
-                ); // end of sbgnStyleSheet
+        .css({
+            'shape': 'data(shape)',
+            'width': 'mapData(weight, 30, 100,10, 80)',
+            'height': 'mapData(weight, 30, 100, 10, 80)',
+            'content': 'data(shortname)',
+            'text-valign': 'bottom',
+            'color': 'black',
+            'border-color': 'data(color)',
+            'border-width': 2,
+            'background-color': 'lightgrey'
+        })
+        .selector('edge')
+        .css({
+            'width': 'mapData(width, 1, 4, 1, 6)',
+            'target-arrow-shape': 'triangle',
+            'source-arrow-color': 'grey',
+            'line-color': 'grey',
+            'target-arrow-color': 'grey'
+        })
+        .selector('node:selected')
+        .css({
+            'border-width': 2,
+            'background-color': 'orange',
+            'content': 'data(name)'.replace("_", " ")
+        })
+        .selector('edge:selected')
+        .css({
+            'color': 'orange',
+            'background-color': 'orange'
+        })
+        .selector('edge.dashed')
+        .css({
+            'line-style': 'dashed'
+        }
+        ); // end of sbgnStyleSheet
 
 var coseOptions = {
     name: 'cose',
-    padding: 2,
+    padding: 15,
     // Whether to animate while running the layout
     animate: true,
     // Number of iterations between consecutive screen positions update (0 -> only updated on the end)
@@ -120,16 +136,26 @@ var SBGNContainer = Backbone.View.extend({
                 });
                 container.cytoscapePanzoom(panProps);
 
-
                 cy.on('tap', 'node', 'null', function (evt) {
                     var node = evt.cyTarget;
                     tapped = node.id();
                     cy.$('#' + node.id()).select();
                 });
 
+                cy.on('tap', 'edge', 'null', function (evt) {
+                    var edge = evt.cyTarget;
+                    var i = edge.id();
+                    cy.$(i).select();
+                });
+
                 cy.on('mouseover', 'node', null, function (evt) {
                     var node = evt.cyTarget;
                     cy.$('#' + node.id()).select();
+                });
+
+                cy.on('mouseover', 'edge', null, function (evt) {
+                    var edge = evt.cyTarget;
+                    cy.$('#' + edge.id()).select();
                 });
 
                 cy.on('mouseout', 'node', null, function (evt) {
@@ -139,7 +165,7 @@ var SBGNContainer = Backbone.View.extend({
                 });
             }
         };
-        
+
         container.html("");
         container.cy(cyOptions);
 

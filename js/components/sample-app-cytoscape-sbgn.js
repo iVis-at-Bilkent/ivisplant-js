@@ -45,13 +45,38 @@ var correlationNetworkStyleSheet = cytoscape.stylesheet()
         .css({
             'line-style': 'dashed'
         }
+        )
+        // some styles for the edge handle plugin
+        .selector('.edgehandles-hover')
+        .css({
+            'background-color': 'red'
+        }
+        )
+        .selector('.edgehandles-source')
+        .css({
+            'border-width': 2,
+            'border-color': 'red'
+        }
+        )
+        .selector('.edgehandles-target')
+        .css({
+            'border-width': 2,
+            'border-color': 'red'
+        }
+        )
+        .selector('.edgehandles-preview, .edgehandles-ghost-edge')
+        .css({
+            'line-color': 'red',
+            'target-arrow-color': 'red',
+            'source-arrow-color': 'red'
+        }
         ); // end of sbgnStyleSheet
 
 var coseOptions = {
     name: 'cose',
-    padding: 15,
+    padding: 20,
     // Whether to animate while running the layout
-    animate: true,
+    //animate: true,
     // Number of iterations between consecutive screen positions update (0 -> only updated on the end)
     refresh: 4,
     // Whether to fit the network view after when done
@@ -132,7 +157,7 @@ var SBGNContainer = Backbone.View.extend({
                 var tapped;
 
                 var panProps = ({
-                    fitPadding: 15,
+                    fitPadding: 20,
                 });
                 container.cytoscapePanzoom(panProps);
 
@@ -168,7 +193,7 @@ var SBGNContainer = Backbone.View.extend({
 
         container.html("");
         container.cy(cyOptions);
-
+        
         return this;
     },
     setCoseLayout: function () {
@@ -179,13 +204,20 @@ var SBGNContainer = Backbone.View.extend({
 var SBGNLayout = Backbone.View.extend({
     defaultLayoutProperties: {
         name: 'cose',
+        padding: 20,
+        refresh: 4,
+        fit: true,
+        randomize: true,
         nodeRepulsion: 10000,
         nodeOverlap: 10,
         idealEdgeLength: 10,
         edgeElasticity: 100,
         nestingFactor: 5,
         gravity: 250,
-        numIter: 100
+        numIter: 100,
+        initialTemp: 300,
+        coolingFactor: 0.97,
+        minTemp: 1.0
     },
     currentLayoutProperties: null,
     initialize: function () {
@@ -208,6 +240,10 @@ var SBGNLayout = Backbone.View.extend({
         $(self.el).dialog();
 
         $("#save-layout").die("click").live("click", function (evt) {
+            self.currentLayoutProperties.padding = document.getElementById("padding").value;
+            self.currentLayoutProperties.refresh = document.getElementById("refresh").value;
+            self.currentLayoutProperties.fit = document.getElementById("fit").value;
+            self.currentLayoutProperties.randomize = document.getElementById("randomize").value;
             self.currentLayoutProperties.nodeRepulsion = document.getElementById("node-repulsion").value;
             self.currentLayoutProperties.nodeOverlap = document.getElementById("node-overlap").value;
             self.currentLayoutProperties.idealEdgeLength = document.getElementById("ideal-edge-length").value;
@@ -215,6 +251,9 @@ var SBGNLayout = Backbone.View.extend({
             self.currentLayoutProperties.nestingFactor = document.getElementById("nesting-factor").value;
             self.currentLayoutProperties.gravity = document.getElementById("gravity").value;
             self.currentLayoutProperties.numIter = document.getElementById("num-iter").value;
+            self.currentLayoutProperties.initialTemp = document.getElementById("initial-temp").value;
+            self.currentLayoutProperties.coolingFactor = document.getElementById("cooling-factor").value;
+            self.currentLayoutProperties.minTemp = document.getElementById("min-temp").value;
 
             $(self.el).dialog('close');
         });
@@ -226,5 +265,78 @@ var SBGNLayout = Backbone.View.extend({
         });
 
         return this;
+    }
+});
+
+var SBGNNewNode = Backbone.View.extend({
+    defaultLayoutProperties: {
+        shortName: "",
+        nodeName: "",
+        shape: "ellipse",
+        weight: 50,
+        color: "grey"
+    },
+    currentNodeProperties: null,
+    initialize: function () {
+        var self = this;
+        self.copyProperties();
+        self.template = _.template($("#node-addition-template").html(), self.currentNodeProperties);
+    },
+    copyProperties: function () {
+        this.currentNodeProperties = _.clone(this.defaultLayoutProperties);
+    },
+    saveNode: function () {
+        var options = this.currentNodeProperties;
+        cy.layout(options);
+    },
+    render: function () {
+        shortname = prompt("Please enter short name", "Cy");
+        name = prompt("Please enter the name", "Cyanide");
+        shape = prompt("Please enter the shape", "star");
+        weight = prompt("Please enter a weight", "50");
+        color = prompt("Please enter color", "red");
+
+        cy.add({
+            group: "nodes",
+            data: {
+                shortname: shortname,
+                name: name,
+                shape: shape,
+                weight: parseInt(weight),
+                color: color
+            },
+            position: {x: 450, y: 450}
+        });
+        cy.forceRender();
+        /*var self = this;
+         self.template = _.template($("#node-addition-template").html(), self.currentNodeProperties);
+         $(self.el).html(self.template);
+         
+         $(self.el).dialog();
+         
+         var person = prompt("Please enter your name", "Harry Potter");
+         $("#add-new-node").die("click").live("click", function (evt) {
+         
+         
+         cy.add({
+         group: "nodes",
+         data: {
+         shortname: document.getElementById("short-name").value,
+         name: document.getElementById("node-name").value,
+         shape: document.getElementById("shape").value,
+         weight: document.getElementById("weight").value,
+         color: document.getElementById("color").value
+         },
+         position: {x: 200, y: 200}
+         });
+         
+         $(self.el).dialog('close');
+         });
+         
+         $("#default-layout").die("click").live("click", function (evt) {
+         $(self.el).dialog('close');
+         });
+         
+         return this;*/
     }
 });

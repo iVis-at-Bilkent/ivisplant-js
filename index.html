@@ -20,6 +20,9 @@
         <link href="css/jquery.qtip.min.css" rel="stylesheet" type="text/css" />
 
         <link href="css/sbgn-viz.css" rel="stylesheet">
+        
+        
+
 
     </head>
 
@@ -79,9 +82,8 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#" id="hide-selected">Hide Selected</a></li>
-                                <li><a href="#" id="show-selected">Show Selected</a></li>
-                                <li><a href="#" id="show-all">Show All</a></li>
+                                <li><a href="#" id="add-node">Add Node</a></li>
+                                <li><a href="#" id="add-edge">Add Edge</a></li>
                                 <li class="divider"></li>
                                 <li><a href="#" id="delete-selected">Delete Selected</a></li>
                             </ul>
@@ -92,7 +94,12 @@
                                 View 
                                 <b class="caret"></b>
                             </a>
+
                             <ul class="dropdown-menu">
+                                <li><a href="#" id="hide-selected">Hide Selected</a></li>
+                                <li><a href="#" id="show-selected">Show Selected</a></li>
+                                <li><a href="#" id="show-all">Show All</a></li>
+                                <li class="divider"></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         Show Labels
@@ -161,11 +168,14 @@
         <div id="sbgn-network-container">
             <div id="cy" >
             </div>
-
         </div>
 
         <div id="sbgn-layout-table" title="Layout Properties">
             <!-- sbgn layout table will be shown here -->
+        </div>
+        
+        <div id="sbgn-node-add" title="Layout Properties">
+            <!-- sbgn node addition table will be shown here -->
         </div>
 
         <div id="biogene-container" style="display: none">
@@ -235,6 +245,44 @@
 
         <script type="text/template" id="layout-settings-template">
             <table class="table-condensed layout-table">
+
+            <tr>
+            <td>
+            <span class="add-on layout-text"> Padding </span>
+            </td>
+            <td>
+            <input id="padding" type="text" class="input-small layout-text" value= <%= padding %> >
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <span class="add-on layout-text"> Refresh </span>
+            </td>
+            <td>
+            <input id="refresh" type="text" class="input-small layout-text" value= <%= refresh %> >
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <span class="add-on layout-text"> Fit </span>
+            </td>
+            <td>
+            <input id="fit" type="text" class="input-small layout-text" value= <%= fit %> >
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <span class="add-on layout-text"> Randomize </span>
+            </td>
+            <td>
+            <input id="randomize" type="text" class="input-small layout-text" value= <%= randomize %> >
+            </td>
+            </tr>
+
+
             <tr>
             <td>
             <span class="add-on layout-text"> Node Repulsion </span>
@@ -298,6 +346,33 @@
             </td>
             </tr>
 
+            <tr>
+            <td>
+            <span class="add-on layout-text"> Initial Temperature </span>
+            </td>
+            <td>
+            <input id="initial-temp" type="text" class="input-small layout-text" value= <%= initialTemp %> >
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <span class="add-on layout-text"> Cooling Factor </span>
+            </td>
+            <td>
+            <input id="cooling-factor" type="text" class="input-small layout-text" value= <%= coolingFactor %> >
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <span class="add-on layout-text"> Minimum Temperature </span>
+            </td>
+            <td>
+            <input id="min-temp" type="text" class="input-small layout-text" value= <%= minTemp %> >
+            </td>
+            </tr>
+
             <tr id="layout-buttons">
             <td>
             <button id="save-layout" class="btn btn-default" >Save</button>
@@ -307,6 +382,66 @@
             </td>
             </tr>
             </table>
+        </script>
+
+        <script type="text/template" id="node-addition-template">
+        <table class="table-condensed sbgn-new-node-table">
+
+            <tr>
+            <td>
+            <span class="add-on layout-text"> Padding </span>
+            </td>
+            <td>
+            <input id="short-name" type="text" class="input-small layout-text" value= <%= shortName %> >
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <span class="add-on layout-text"> Padding </span>
+            </td>
+            <td>
+            <input id="node-name" type="text" class="input-small layout-text" value= <%= nodeName %> >
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <span class="add-on layout-text"> Padding </span>
+            </td>
+            <td>
+            <input id="shape" type="text" class="input-small layout-text" value= <%= shape %> >
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <span class="add-on layout-text"> Padding </span>
+            </td>
+            <td>
+            <input id="weight" type="text" class="input-small layout-text" value= <%= weight %> >
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <span class="add-on layout-text"> Padding </span>
+            </td>
+            <td>
+            <input id="color" type="text" class="input-small layout-text" value= <%= color %> >
+            </td>
+            </tr>
+    
+            <tr id="layout-buttons">
+            <td>
+            <button id="add-new-node" class="btn btn-default" >Add</button>
+            </td>
+            <td>
+            <button id="cancel-node" class="btn btn-default">Cancel</button>
+            </td>
+            </tr>
+            </table>
+        
         </script>
 
         <!-- BioGeneView template for backbone.js -->
@@ -384,6 +519,8 @@
         <script src="js/libraries/cytoscape.js-qtip.js"></script>
         <script src="js/libraries/FileSaver.js"></script>
         <script src="js/libraries/jquery.noty.packaged.min.js"></script>
+        <!-- Loading edge handle plugin -->
+        <script src="js/libraries/cytoscape.js-edgehandles.js"></script>
 
         <script src="js/extensions/cytoscape.layout.tiled-cose.js"></script>
 

@@ -6,7 +6,6 @@ var setFileContent = function (fileName) {
     span.appendChild(document.createTextNode(fileName));
 }
 
-
 $(document).ready(function () {
     var jsonObject;
     $.ajax({
@@ -30,6 +29,10 @@ $(document).ready(function () {
 
     var sbgnLayoutProp = new SBGNLayout({
         el: '#sbgn-layout-table'
+    });
+
+    var sbgnNewNodeProp = new SBGNNewNode({
+        el: 'sbgn-new-node-table'
     });
 
     $("body").on("change", "#file-input", function (e) {
@@ -118,6 +121,10 @@ $(document).ready(function () {
             el: '#sbgn-layout-table'
         });
 
+        var sbgnNewNodeProp = new SBGNNewNode({
+            el: 'sbgn-new-node-table'
+        });
+
         /*
          var file = new Blob(['samples/Deneme.json'], {
          type: "text/plain;charset=utf-8;",
@@ -174,6 +181,20 @@ $(document).ready(function () {
     $("#perform-layout").click(function (e) {
         //sbgnLayoutProp.applyLayout();
         cy.layout(coseOptions);
+    });
+
+    $("#add-node").click(function (e) {
+        sbgnNewNodeProp.render();
+    });
+
+
+    $("#add-edge").click(function (e) {
+        cy.edgehandles({
+            enabled:true,
+            stop: function (sourceNode) {
+                cy.edgehandles('disable')// fired when edgehandles interaction is stopped (either complete with added edges or incomplete)
+            }// closes edge-handle after adding an edge
+        });
     });
 
     $("#save-as-png").click(function (evt) {

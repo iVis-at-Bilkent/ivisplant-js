@@ -203,7 +203,7 @@ var SBGNContainer = Backbone.View.extend({
     },
     setCoseLayout: function () {
         cy.layout(coseOptions);
-        cy.fit();
+        //cy.fit();
     }
 });
 

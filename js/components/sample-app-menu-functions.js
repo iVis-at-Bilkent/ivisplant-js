@@ -47,22 +47,15 @@ $(document).ready(function () {
             return;
         }
 
-
-        if (file.type.match('csv')) {
-            return;
-        }
-
-        if (file.type.match('json')) {
-            return;
-        }
-
         var reader = new FileReader();
+
 
 
         reader.onload = function (e) {
             if (/.csv$/.test(file.name)) {
-                console.debug(csvToJsonText(this.result).toString());
-                (new SBGNContainer({
+                //console.debug(csvToJsonText(this.result).toString());
+                
+                var cont = (new SBGNContainer({
                     el: '#sbgn-network-container',
                     model: {cytoscapeJsGraph:
                                 JSON.parse(csvToJsonText(this.result))}
@@ -73,7 +66,6 @@ $(document).ready(function () {
                     model: {cytoscapeJsGraph:
                                 JSON.parse(this.result)}
                 })).render();
-                //cy.layout(coseOptions);
             }
 
 

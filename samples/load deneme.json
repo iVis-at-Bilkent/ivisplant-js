@@ -1,0 +1,30 @@
+
+{"nodes": [
+{
+"data":{"id": "G",
+"shortname": "G",
+"name": "Glucose",
+"shape": "ellipse",
+"weight": 90,
+"color": "grey"
+}
+},
+{
+"data":{"id": "As_A",
+"shortname": "As A",
+"name": "Aspartic Acid",
+"shape": "triangle",
+"weight": 34,
+"color": "pink"
+}
+}
+],
+"edges": [
+{
+"data":{"source": "G",
+"target": "As_A",
+"width": "4"
+}
+}
+]
+}

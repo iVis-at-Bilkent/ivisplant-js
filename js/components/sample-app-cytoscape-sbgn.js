@@ -136,10 +136,14 @@ var SBGNContainer = Backbone.View.extend({
 
         //add position information to data for preset layout
         for (var i = 0; i < cytoscapeJsGraph.nodes.length; i++) {
-            var xPos = cytoscapeJsGraph.nodes[i].position.x;
-            var yPos = cytoscapeJsGraph.nodes[i].position.y;
-            positionMap[cytoscapeJsGraph.nodes[i].data.id] = {'x': xPos, 'y': yPos};
+            if (_.has(cytoscapeJsGraph.nodes[i], 'position')) { // if position values are present
+                var xPos = cytoscapeJsGraph.nodes[i].position.x;
+                var yPos = cytoscapeJsGraph.nodes[i].position.y;
+                positionMap[cytoscapeJsGraph.nodes[i].data.id] = {'x': xPos, 'y': yPos};
+            }
         }
+
+
 
         var cyOptions = {
             elements: cytoscapeJsGraph,
@@ -188,16 +192,18 @@ var SBGNContainer = Backbone.View.extend({
                     if (tapped != node.id())
                         cy.$('#' + node.id()).unselect();
                 });
+
+
             }
         };
 
         container.html("");
         container.cy(cyOptions);
-        
         return this;
     },
     setCoseLayout: function () {
         cy.layout(coseOptions);
+        cy.fit();
     }
 });
 

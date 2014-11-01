@@ -31,9 +31,9 @@ $(document).ready(function () {
         el: '#sbgn-layout-table'
     });
 
-    var sbgnNewNodeProp = new SBGNNewNode({
-        el: 'sbgn-new-node-table'
-    });
+    /*var sbgnNewNodeProp = new SBGNNewNode({
+     el: 'sbgn-new-node-table'
+     });*/
 
     $("body").on("change", "#file-input", function (e) {
         if ($("#file-input").val() == "") {
@@ -41,17 +41,43 @@ $(document).ready(function () {
         }
         var fileInput = document.getElementById('file-input');
         var file = fileInput.files[0];
-        var textType = /text.*/
+        //var textType = /text.*/
+        if (!/.csv$/.test(file.name) && !/.json$/.test(file.name)) {
+            alert(file.name + " should be a .json or .csv file.");
+            return;
+        }
+
+
+        if (file.type.match('csv')) {
+            return;
+        }
+
+        if (file.type.match('json')) {
+            return;
+        }
 
         var reader = new FileReader();
-        var result = "";
+
 
         reader.onload = function (e) {
-            (new SBGNContainer({
-                el: '#sbgn-network-container',
-                model: {cytoscapeJsGraph:
-                            JSON.parse(this.result)}
-            })).render();
+            if (/.csv$/.test(file.name)) {
+                console.debug(csvToJsonText(this.result).toString());
+                (new SBGNContainer({
+                    el: '#sbgn-network-container',
+                    model: {cytoscapeJsGraph:
+                                JSON.parse(csvToJsonText(this.result))}
+                })).render();
+            } else {
+                (new SBGNContainer({
+                    el: '#sbgn-network-container',
+                    model: {cytoscapeJsGraph:
+                                JSON.parse(this.result)}
+                })).render();
+                //cy.layout(coseOptions);
+            }
+
+
+
         }
         reader.readAsText(file);
         setFileContent(file.name);
@@ -121,9 +147,9 @@ $(document).ready(function () {
             el: '#sbgn-layout-table'
         });
 
-        var sbgnNewNodeProp = new SBGNNewNode({
-            el: 'sbgn-new-node-table'
-        });
+        /*var sbgnNewNodeProp = new SBGNNewNode({
+         el: 'sbgn-new-node-table'
+         });*/
 
         /*
          var file = new Blob(['samples/Deneme.json'], {
@@ -190,7 +216,7 @@ $(document).ready(function () {
 
     $("#add-edge").click(function (e) {
         cy.edgehandles({
-            enabled:true,
+            enabled: true,
             stop: function (sourceNode) {
                 cy.edgehandles('disable')// fired when edgehandles interaction is stopped (either complete with added edges or incomplete)
             }// closes edge-handle after adding an edge
@@ -203,6 +229,10 @@ $(document).ready(function () {
     });
 
     $("#load-file").click(function (evt) {
+        $("#file-input").trigger('click');
+    });
+
+    $("#load-csv-file").click(function (evt) {
         $("#file-input").trigger('click');
     });
 

@@ -1,0 +1,3 @@
+nodes;G;G;Glucose;ellipse;90;grey
+nodes;As_A;As A;Aspartic Acid;triangle;34;pink
+edges;G;As_A;4;e007

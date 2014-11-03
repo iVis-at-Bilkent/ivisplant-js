@@ -42,8 +42,8 @@ $(document).ready(function () {
         var fileInput = document.getElementById('file-input');
         var file = fileInput.files[0];
         //var textType = /text.*/
-        if (!/.csv$/.test(file.name) && !/.json$/.test(file.name)) {
-            alert(file.name + " should be a .json or .csv file.");
+        if (!/.txt$/.test(file.name) && !/.json$/.test(file.name)) {
+            alert(file.name + " should be a .json or .txt file.");
             return;
         }
 
@@ -52,13 +52,13 @@ $(document).ready(function () {
 
 
         reader.onload = function (e) {
-            if (/.csv$/.test(file.name)) {
+            if (/.txt$/.test(file.name)) {
                 //console.debug(csvToJsonText(this.result).toString());
                 
-                var cont = (new SBGNContainer({
+                (new SBGNContainer({
                     el: '#sbgn-network-container',
                     model: {cytoscapeJsGraph:
-                                JSON.parse(csvToJsonText(this.result))}
+                                JSON.parse(txtToJsonText(this.result))}
                 })).render();
             } else {
                 (new SBGNContainer({

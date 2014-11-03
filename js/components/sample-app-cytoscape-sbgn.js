@@ -136,11 +136,9 @@ var SBGNContainer = Backbone.View.extend({
 
         //add position information to data for preset layout
         for (var i = 0; i < cytoscapeJsGraph.nodes.length; i++) {
-            if (_.has(cytoscapeJsGraph.nodes[i], 'position')) { // if position values are present
                 var xPos = cytoscapeJsGraph.nodes[i].position.x;
                 var yPos = cytoscapeJsGraph.nodes[i].position.y;
                 positionMap[cytoscapeJsGraph.nodes[i].data.id] = {'x': xPos, 'y': yPos};
-            }
         }
 
 
@@ -174,7 +172,7 @@ var SBGNContainer = Backbone.View.extend({
                 cy.on('tap', 'edge', 'null', function (evt) {
                     var edge = evt.cyTarget;
                     var i = edge.id();
-                    cy.$(i).select();
+                    cy.$('#' + i).select();/****************************************************************???????*/
                 });
 
                 cy.on('mouseover', 'node', null, function (evt) {

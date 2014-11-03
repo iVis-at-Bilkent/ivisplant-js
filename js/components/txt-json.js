@@ -4,24 +4,22 @@
  * and open the template in the editor.
  */
 
-function csvToJsonText(csvText) {
-    if (csvText.indexOf(';') < 0) // if text doesn't have ";" in it (also covers empty string)
+function txtToJsonText(csvText) {
+    if (csvText.indexOf('\t') < 0) // if text doesn't have "\t" in it (also covers empty string)
         return;
 
+    var line, node, edge;
     var lines = csvText.split('\n');
-    var line;
     var json = [];
-    var node;
-    var edge;
     var nodes = [];
     var edges = [];
 
 
     for (var i = 0; i < lines.length; i++) {
-        line = lines[i].split(';');
+        line = lines[i].split('\t');
 
-        if (line[0] == "nodes") {
-            if (line.length < 7) {
+        if (line[0] == "node") {
+            if (line.length < 9) {
                 continue;
             }
             node = [];
@@ -34,8 +32,15 @@ function csvToJsonText(csvText) {
             node.push('"weight": ' + line[6]);
             
 
-            nodes.push('{\n"data":{' + node.join(',\n') + '\n}\n}');
-        } else if (line[0] == "edges") {
+            nodes.push('{\n"data":{' + node.join(',\n') + '\n}');
+            
+            node = [];
+            
+            node.push('"x": ' + line[7] );
+            node.push('"y": ' + line[8] );
+            nodes.push('\n"position":{' + node.join(',\n') + '\n}\n}');            
+            
+        } else if (line[0] == "edge") {
             if (line.length < 4) {
                 continue;
             }
@@ -60,39 +65,6 @@ function csvToJsonText(csvText) {
     json.push(edges.join(',\n'));
     json.push('\n]');
     json.push('\n}');
-
-    //My csv to json algorithm works perfectly but directly using the return value fails. Therefore currently I will save
-    //it to a file and then reload it
-    //var blob = new Blob([json.join('').toString()], {type: "text/plain;charset=utf-8"});
-    //saveAs(blob, "tempCsvToJson.json");
     
     return json.join('').toString();
-}
-
-function dummy() {
-    return {
-        "nodes": [
-            {
-                "data":
-                        {
-                            "id": "G", "shortname": "G", "name": "Glucose", "shape": "ellipse", "weight": 90, "color": "grey"
-                        }
-            },
-            {
-                "data":
-                        {
-                            "id": "As_A", "shortname": "As A", "name": "Aspartic Acid", "shape": "triangle", "weight": 34, "color": "pink"
-                        }
-            }
-        ],
-        "edges": [
-            {
-                "data":
-                        {
-                            "source": "G", "target": "As_A", "width": 4
-                        }
-            }
-        ]
-    }
-
 }

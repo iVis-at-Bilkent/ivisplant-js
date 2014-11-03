@@ -1,0 +1,3 @@
+node	G	G	Glucose	ellipse	grey	90	300	400
+node	As_A	As A	Aspartic Acid	triangle	pink	34	400	400
+edge	G	As_A	4	e007

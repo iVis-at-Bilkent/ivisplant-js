@@ -8,7 +8,7 @@ function txtToJsonText(csvText) {
     if (csvText.indexOf('\t') < 0) // if text doesn't have "\t" in it (also covers empty string)
         return;
 
-    var line, node, edge;
+    var line, node, edge, tmp;
     var lines = csvText.split('\n');
     var json = [];
     var nodes = [];
@@ -19,7 +19,7 @@ function txtToJsonText(csvText) {
         line = lines[i].split('\t');
 
         if (line[0] == "node") {
-            if (line.length < 9) {
+            if (line.length < 7) {
                 continue;
             }
             node = [];
@@ -30,16 +30,20 @@ function txtToJsonText(csvText) {
             node.push('"shape": "' + line[4] + '"');
             node.push('"color": "' + line[5] + '"');
             node.push('"weight": ' + line[6]);
+
+
             
 
-            nodes.push('{\n"data":{' + node.join(',\n') + '\n}');
             
-            node = [];
-            
-            node.push('"x": ' + line[7] );
-            node.push('"y": ' + line[8] );
-            nodes.push('\n"position":{' + node.join(',\n') + '\n}\n}');            
-            
+            if (line.length > 7) {
+                tmp = node.join(',\n');
+                node = [];
+                node.push('"x": ' + line[7]);
+                node.push('"y": ' + line[8]);
+                nodes.push('{\n"data":{' + tmp + '\n},\n"position":{' + node.join(',\n') + '\n}\n}');
+            }else{
+                nodes.push('{\n"data":{' + node.join(',\n') + '\n}\n}');
+            }
         } else if (line[0] == "edge") {
             if (line.length < 4) {
                 continue;
@@ -65,6 +69,6 @@ function txtToJsonText(csvText) {
     json.push(edges.join(',\n'));
     json.push('\n]');
     json.push('\n}');
-    
+    console.debug(json.join('').toString());
     return json.join('').toString();
 }

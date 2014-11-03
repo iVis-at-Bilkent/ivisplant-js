@@ -67,9 +67,6 @@ $(document).ready(function () {
                                 JSON.parse(this.result)}
                 })).render();
             }
-
-
-
         }
         reader.readAsText(file);
         setFileContent(file.name);

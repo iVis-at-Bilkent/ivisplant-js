@@ -105,6 +105,8 @@ var coseOptions = {
     minTemp: 1.0
 }
 
+
+
 var NotyView = Backbone.View.extend({
     render: function () {
         //this.model["theme"] = " twitter bootstrap";
@@ -133,24 +135,27 @@ var SBGNContainer = Backbone.View.extend({
         var cytoscapeJsGraph = (this.model.cytoscapeJsGraph);
 
         var positionMap = {};
+        var positionEntered = true;
 
         //add position information to data for preset layout
         for (var i = 0; i < cytoscapeJsGraph.nodes.length; i++) {
+            if (_.has(cytoscapeJsGraph.nodes[i], 'position')) { // if position values are present
                 var xPos = cytoscapeJsGraph.nodes[i].position.x;
                 var yPos = cytoscapeJsGraph.nodes[i].position.y;
                 positionMap[cytoscapeJsGraph.nodes[i].data.id] = {'x': xPos, 'y': yPos};
+            } else {
+                positionEntered = false;
+            }
         }
-
-
 
         var cyOptions = {
             elements: cytoscapeJsGraph,
             style: correlationNetworkStyleSheet,
+            showOverlay: false,
             layout: {
                 name: 'preset',
                 positions: positionMap
             },
-            showOverlay: false,
             minZoom: 0.125,
             maxZoom: 16,
             ready: function ()
@@ -172,7 +177,7 @@ var SBGNContainer = Backbone.View.extend({
                 cy.on('tap', 'edge', 'null', function (evt) {
                     var edge = evt.cyTarget;
                     var i = edge.id();
-                    cy.$('#' + i).select();/****************************************************************???????*/
+                    cy.$(i).select();
                 });
 
                 cy.on('mouseover', 'node', null, function (evt) {
@@ -194,6 +199,12 @@ var SBGNContainer = Backbone.View.extend({
 
             }
         };
+        
+        if (!positionEntered){
+            cyOptions.layout = coseOptions;
+        }
+
+
 
         container.html("");
         container.cy(cyOptions);

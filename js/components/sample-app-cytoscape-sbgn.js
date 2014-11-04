@@ -38,7 +38,8 @@ var correlationNetworkStyleSheet = cytoscape.stylesheet()
         })
         .selector('edge:selected')
         .css({
-            'color': 'orange',
+            'line-color': 'orange',
+            'target-arrow-color': 'orange',
             'background-color': 'orange'
         })
         .selector('edge.dashed')
@@ -145,6 +146,7 @@ var SBGNContainer = Backbone.View.extend({
                 positionMap[cytoscapeJsGraph.nodes[i].data.id] = {'x': xPos, 'y': yPos};
             } else {
                 positionEntered = false;
+                break;
             }
         }
 
@@ -174,20 +176,9 @@ var SBGNContainer = Backbone.View.extend({
                     cy.$('#' + node.id()).select();
                 });
 
-                cy.on('tap', 'edge', 'null', function (evt) {
-                    var edge = evt.cyTarget;
-                    var i = edge.id();
-                    cy.$(i).select();
-                });
-
                 cy.on('mouseover', 'node', null, function (evt) {
                     var node = evt.cyTarget;
                     cy.$('#' + node.id()).select();
-                });
-
-                cy.on('mouseover', 'edge', null, function (evt) {
-                    var edge = evt.cyTarget;
-                    cy.$('#' + edge.id()).select();
                 });
 
                 cy.on('mouseout', 'node', null, function (evt) {
@@ -199,12 +190,10 @@ var SBGNContainer = Backbone.View.extend({
 
             }
         };
-        
-        if (!positionEntered){
+
+        if (!positionEntered) {
             cyOptions.layout = coseOptions;
         }
-
-
 
         container.html("");
         container.cy(cyOptions);
@@ -284,74 +273,52 @@ var SBGNLayout = Backbone.View.extend({
 });
 
 var SBGNNewNode = Backbone.View.extend({
-    defaultLayoutProperties: {
-        shortName: "",
-        nodeName: "",
-        shape: "ellipse",
-        weight: 50,
-        color: "grey"
+    currentNodeProperties: {
+        shortname: "Cy",
+        nodeName: "Cyanide",
+        shape: "triangle",
+        weight: 75,
+        color: "red"
     },
-    currentNodeProperties: null,
     initialize: function () {
         var self = this;
-        self.copyProperties();
         self.template = _.template($("#node-addition-template").html(), self.currentNodeProperties);
-    },
-    copyProperties: function () {
-        this.currentNodeProperties = _.clone(this.defaultLayoutProperties);
-    },
-    saveNode: function () {
-        var options = this.currentNodeProperties;
-        cy.layout(options);
+        $(".basic").spectrum({
+            color: "#f00",
+            change: function (color_) {
+                $("#basic-log").text("change called: " + color_.toHexString());
+                currentNodeProperties.color = color_;
+            }
+        });
     },
     render: function () {
-        shortname = prompt("Please enter short name", "Cy");
-        name = prompt("Please enter the name", "Cyanide");
-        shape = prompt("Please enter the shape", "star");
-        weight = prompt("Please enter a weight", "50");
-        color = prompt("Please enter color", "red");
+        var self = this;
+        self.template = _.template($("#node-addition-template").html(), self.currentNodeProperties);
+        $(self.el).html(self.template);
 
-        cy.add({
-            group: "nodes",
-            data: {
-                shortname: shortname,
-                name: name,
-                shape: shape,
-                weight: parseInt(weight),
-                color: color
-            },
-            position: {x: 450, y: 450}
+        $(self.el).dialog();
+
+        $("#add-new-node").die("click").live("click", function (evt) {
+            var c = $("#picker").spectrum("get");
+            $(self.el).dialog('close');
+
+            cy.add({
+                group: "nodes",
+                data: {
+                    shortname: document.getElementById("short-name").value,
+                    name: document.getElementById("node-name").value,
+                    shape: document.getElementById("shape").value,
+                    weight: parseInt(document.getElementById("weight").value),
+                    color: c[0].value
+                },
+                position: {x: 450, y: 450}
+            });
         });
-        cy.forceRender();
-        /*var self = this;
-         self.template = _.template($("#node-addition-template").html(), self.currentNodeProperties);
-         $(self.el).html(self.template);
-         
-         $(self.el).dialog();
-         
-         var person = prompt("Please enter your name", "Harry Potter");
-         $("#add-new-node").die("click").live("click", function (evt) {
-         
-         
-         cy.add({
-         group: "nodes",
-         data: {
-         shortname: document.getElementById("short-name").value,
-         name: document.getElementById("node-name").value,
-         shape: document.getElementById("shape").value,
-         weight: document.getElementById("weight").value,
-         color: document.getElementById("color").value
-         },
-         position: {x: 200, y: 200}
-         });
-         
-         $(self.el).dialog('close');
-         });
-         
-         $("#default-layout").die("click").live("click", function (evt) {
-         $(self.el).dialog('close');
-         });
-         
-         return this;*/
+
+        $("#cancel-node").die("click").live("click", function (evt) {
+            $(self.el).dialog('close');
+        });
+
+        return this;
     }
 });

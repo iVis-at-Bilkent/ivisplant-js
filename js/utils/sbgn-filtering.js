@@ -6,10 +6,11 @@ var sbgnFiltering = {
         'association', 'dissociation', 'phenotype'],
 
     deleteSelected: function(){
-        var allNodes = cy.nodes();
+        cy.$(':selected').remove();
+        /*var allNodes = cy.nodes();
         var selectedNodes = cy.nodes(":selected");
         var nodesToShow = this.expandRemainingNodes(selectedNodes, allNodes);
-        allNodes.not(nodesToShow).remove();
+        allNodes.not(nodesToShow).remove();*/
     },
 
     hideSelected: function(){

@@ -31,9 +31,9 @@ $(document).ready(function () {
         el: '#sbgn-layout-table'
     });
 
-    /*var sbgnNewNodeProp = new SBGNNewNode({
-     el: 'sbgn-new-node-table'
-     });*/
+    var sbgnNewNodeProp = new SBGNNewNode({
+        el: '#sbgn-newNode-table'
+    });
 
     $("body").on("change", "#file-input", function (e) {
         if ($("#file-input").val() == "") {
@@ -54,7 +54,7 @@ $(document).ready(function () {
         reader.onload = function (e) {
             if (/.txt$/.test(file.name)) {
                 //console.debug(csvToJsonText(this.result).toString());
-                
+
                 (new SBGNContainer({
                     el: '#sbgn-network-container',
                     model: {cytoscapeJsGraph:
@@ -136,9 +136,9 @@ $(document).ready(function () {
             el: '#sbgn-layout-table'
         });
 
-        /*var sbgnNewNodeProp = new SBGNNewNode({
-         el: 'sbgn-new-node-table'
-         });*/
+        var sbgnNewNodeProp = new SBGNNewNode({
+            el: '#sbgn-newNode-table'
+        });
 
         /*
          var file = new Blob(['samples/Deneme.json'], {
@@ -272,4 +272,6 @@ $(document).ready(function () {
         expanderOpts.slicePoint = 2;
         expanderOpts.widow = 0;
     });
+    
+
 });

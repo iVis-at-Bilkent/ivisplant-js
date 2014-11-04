@@ -20,8 +20,8 @@
         <link href="css/jquery.qtip.min.css" rel="stylesheet" type="text/css" />
 
         <link href="css/sbgn-viz.css" rel="stylesheet">
-        
-        
+        <link rel='stylesheet' href='css/spectrum.css' />
+
 
 
     </head>
@@ -173,7 +173,11 @@
         <div id="sbgn-layout-table" title="Layout Properties">
             <!-- sbgn layout table will be shown here -->
         </div>
-        
+
+        <div id="sbgn-newNode-table" title="Layout Properties">
+            <!-- sbgn layout table will be shown here -->
+        </div>
+
         <div id="sbgn-node-add" title="Layout Properties">
             <!-- sbgn node addition table will be shown here -->
         </div>
@@ -385,50 +389,61 @@
         </script>
 
         <script type="text/template" id="node-addition-template">
-        <table class="table-condensed sbgn-new-node-table">
+        <table class="table-condensed layout-table">
 
             <tr>
             <td>
-            <span class="add-on layout-text"> Padding </span>
+            <span class="add-on layout-text"> Short Name </span>
             </td>
             <td>
-            <input id="short-name" type="text" class="input-small layout-text" value= <%= shortName %> >
+            <input id="short-name" type="text" class="input-medium layout-text" value= <%= shortname %> >
             </td>
             </tr>
 
             <tr>
             <td>
-            <span class="add-on layout-text"> Padding </span>
+            <span class="add-on layout-text"> Name </span>
             </td>
             <td>
-            <input id="node-name" type="text" class="input-small layout-text" value= <%= nodeName %> >
-            </td>
-            </tr>
-
-            <tr>
-            <td>
-            <span class="add-on layout-text"> Padding </span>
-            </td>
-            <td>
-            <input id="shape" type="text" class="input-small layout-text" value= <%= shape %> >
+            <input id="node-name" type="text" class="input-medium layout-text" value= <%= nodeName %> >
             </td>
             </tr>
 
             <tr>
             <td>
-            <span class="add-on layout-text"> Padding </span>
+            <span class="add-on layout-text"> Shape </span>
             </td>
             <td>
-            <input id="weight" type="text" class="input-small layout-text" value= <%= weight %> >
+            <input id="shape" type="text" class="input-medium layout-text" list=shapes value= <%= shape %> >
+            <datalist id=shapes >
+                <option> rectangle
+                <option> roundrectangle
+                <option> ellipse
+                <option> triangle
+                <option> pentagon
+                <option> hexagon
+                <option> heptagon
+                <option> octagon
+                <option> star
+            </datalist>
             </td>
             </tr>
 
             <tr>
             <td>
-            <span class="add-on layout-text"> Padding </span>
+            <span class="add-on layout-text"> Weight </span>
             </td>
             <td>
-            <input id="color" type="text" class="input-small layout-text" value= <%= color %> >
+            <input id="weight" type="text" class="input-medium layout-text" value= <%= weight %> >
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <span class="add-on layout-text"> Color </span>
+            </td>
+            <td>
+            <input id='picker' type='color' class='input-medium basic' />
             </td>
             </tr>
     
@@ -519,6 +534,8 @@
         <script src="js/libraries/cytoscape.js-qtip.js"></script>
         <script src="js/libraries/FileSaver.js"></script>
         <script src="js/libraries/jquery.noty.packaged.min.js"></script>
+        <script src='js/libraries/spectrum.js'></script>
+
         <!-- Loading edge handle plugin -->
         <script src="js/libraries/cytoscape.js-edgehandles.js"></script>
 

@@ -31,13 +31,8 @@ function txtToJsonText(csvText) {
             node.push('"color": "' + line[5] + '"');
             node.push('"weight": ' + line[6]);
 
-
-            
-
-            
             if (line.length > 7) {
-                tmp = node.join(',\n');
-                node = [];
+                tmp = node.join(',\n'); node = [];
                 node.push('"x": ' + line[7]);
                 node.push('"y": ' + line[8]);
                 nodes.push('{\n"data":{' + tmp + '\n},\n"position":{' + node.join(',\n') + '\n}\n}');

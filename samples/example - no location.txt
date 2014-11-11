@@ -1,3 +1,4 @@
 node	G	G	Glucose	ellipse	grey	90
 node	As_A	As A	Aspartic Acid	triangle	pink	34
+node	as	as	anan	rectangle	red	50
 edge	G	As_A	4	e007

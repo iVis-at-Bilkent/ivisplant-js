@@ -206,9 +206,10 @@ $(document).ready(function () {
     $("#add-edge").click(function (e) {
         cy.edgehandles({
             enabled: true,
-            stop: function (sourceNode) {
-                cy.edgehandles('disable')// fired when edgehandles interaction is stopped (either complete with added edges or incomplete)
-            }// closes edge-handle after adding an edge
+            toggleOffOnLeave: true,
+            stop: function (sourceNode) {// fired when edgehandles interaction is stopped (either complete with added edges or incomplete)
+                cy.edgehandles('disable')// closes edge-handle after adding an edge
+            }
         });
     });
 

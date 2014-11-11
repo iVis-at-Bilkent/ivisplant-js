@@ -414,18 +414,20 @@
             <span class="add-on layout-text"> Shape </span>
             </td>
             <td>
-            <input id="shape" type="text" class="input-medium layout-text" list=shapes value= <%= shape %> >
-            <datalist id=shapes >
-                <option> rectangle
-                <option> roundrectangle
-                <option> ellipse
-                <option> triangle
-                <option> pentagon
-                <option> hexagon
-                <option> heptagon
-                <option> octagon
-                <option> star
-            </datalist>
+
+              
+            <select id="shape" type="text" class="input-medium layout-text" value= <%= shape %>>
+                <option value="rectangle">Rectangle</option>
+                <option value="roundrectangle">Rounded Rectangle</option>
+                <option value="ellipse">Ellipse</option>
+                <option value="triangle">Triangle</option>
+                <option value="pentagon">Pentagon</option>
+                <option value="hexagon">Hexagon</option>
+                <option value="heptagon">Heptagon</option>
+                <option value="octagon">Octagon</option>
+                <option value="star">Star</option>
+            </select>
+            
             </td>
             </tr>
 
@@ -459,56 +461,52 @@
         
         </script>
 
-        <!-- BioGeneView template for backbone.js -->
-        <script type="text/template" id="biogene-template">
-            <div class='node-details-text'>
-            <table class="table table-condensed table-striped" cellspacing="10">
-            <tr class="biogene-info biogene-description node-details-summary">
-            <th valign="top">Gene Summary:</th>
-            <td colspan="2" class="expandable">
-            <%=geneSummary %>
-            </td>
-            </tr>
-            <tr class="biogene-info biogene-aliases">
-            <th valign="top">Aliases:</th>
-            <td>
-            <%=geneAliases %>
-            </td>
-            </tr>
-            <tr class="biogene-info biogene-description">
-            <th>Description:</th>
-            <td class="expandable">
-            <%=geneDescription %>
-            </td>
-            </tr>
-            <tr class="biogene-info biogene-location">
-            <th valign="top">Chromosome Location:</th>
-            <td>
-            <%=geneLocation %>
-            </td>
-            </tr>
-            <tr class="biogene-info biogene-uniprot-links">
-            <th valign="top">UniProt ID:</th>
-            <td>
-            <a href='http://www.uniprot.org/uniprot/<%= geneUniprotId %>' target='blank'>
-            <%=geneUniprotId %>
-            </a>
-            <span class='biogene-uniprot-links-extra'>
-            <%= geneUniprotLinks %>
-            </span>
-            </td>
-            </tr>
-            <tr class="biogene-info biogene-id">
-            <th valign="top">Gene ID:</th>
-            <td>
-            <a href='http://www.ncbi.nlm.nih.gov/gene?term=<%= geneId %>' target='blank'>
-            <%=geneId %>
-            </a>
-            </td>
-            </tr>
-            </table>
-            </div>
+        <!-- Node inspector template for backbone.js -->
+        <script type="text/template" id="node-inspector-template">
+                <div class='node-details-text'>
+                    <table class="table table-condensed table-striped" cellspacing="10">
+                        <tr class="biogene-info biogene-aliases">
+                            <th valign="top">Short Name:</th>
+                            <td>
+                                <%=shortName %>
+                            </td>
+                        </tr>
+                        <tr class="biogene-info biogene-description">
+                            <th>Name:</th>
+                            <td class="expandable">
+                                <%=nodeName %>
+                            </td>
+                        </tr>
+                        <tr class="biogene-info biogene-location">
+                            <th valign="top">Node Shape:</th>
+                            <td>
+                                <%=shape %>
+                            </td>
+                        </tr>
+                        <tr class="biogene-info biogene-uniprot-links">
+                            <th valign="top">Node Weight:</th>
+                            <td>
+                                <%=weight %>
+                            </td>
+                        </tr>
+                        <tr class="biogene-info biogene-id">
+                            <th valign="top">Color:</th>
+                            <td>
+                                <%=color %>
+                            </td>
+                        </tr>
+
+                        <tr id="node-edit-buttons">
+                            <td>
+                                <button id="change-node" class="btn btn-default" >Change</button>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
         </script>
+
 
         <script type="text/template" id="uniprot-link-template">
             <a href="http://www.uniprot.org/uniprot/<%= id %>" target="_blank">

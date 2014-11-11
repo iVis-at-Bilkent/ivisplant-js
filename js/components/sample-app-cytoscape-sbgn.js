@@ -34,7 +34,7 @@ var correlationNetworkStyleSheet = cytoscape.stylesheet()
         .css({
             'border-width': 2,
             'background-color': 'orange',
-            'content': 'data(name)'.replace("_", " ")
+            'content': 'data(name)'
         })
         .selector('edge:selected')
         .css({
@@ -166,7 +166,7 @@ var SBGNContainer = Backbone.View.extend({
                 var tapped;
 
                 var panProps = ({
-                    fitPadding: 20,
+                    fitPadding: 20
                 });
                 container.cytoscapePanzoom(panProps);
 
@@ -187,7 +187,45 @@ var SBGNContainer = Backbone.View.extend({
                         cy.$('#' + node.id()).unselect();
                 });
 
+                cy.on('cxttap', 'node', function (event) {
+                    var node = event.cyTarget;
 
+                    cy.getElementById(node.id()).qtip({
+                        content: {
+                            text: function (event, api)
+                            {
+
+                                var info = (new BioGeneView(
+                                        {
+                                            el: '#biogene-container',
+                                            model: node
+                                        })).render();
+                                var html = $('#biogene-container').html();
+                                api.set('content.text', html);
+                                api.set('content.title',"Node ID: " + node._private.data.id);
+                                return _.template($("#biogene-container").html());
+                            }
+                        },
+                        show: {
+                            ready: true
+                        },
+                        position: {
+                            my: 'top center',
+                            at: 'bottom center',
+                            adjust: {
+                                cyViewport: true
+                            },
+                            effect: false
+                        },
+                        style: {
+                            classes: 'qtip-bootstrap',
+                            tip: {
+                                width: 16,
+                                height: 8
+                            }
+                        }
+                    });
+                });
             }
         };
 
@@ -318,6 +356,28 @@ var SBGNNewNode = Backbone.View.extend({
         $("#cancel-node").die("click").live("click", function (evt) {
             $(self.el).dialog('close');
         });
+
+        return this;
+    }
+});
+
+var BioGeneView = Backbone.View.extend({
+    render: function () {
+        // pass variables in using Underscore.js template
+        var variables = {
+            nodeId: this.model._private.data.id,
+            shortName: this.model._private.data.shortname,
+            nodeName: this.model._private.data.name,
+            shape: this.model._private.data.shape,
+            weight: this.model._private.data.weight,
+            color: this.model._private.data.color
+        };
+
+        // compile the template using underscore
+        var template = _.template($("#node-inspector-template").html(), variables);
+
+        // load the compiled HTML into the Backbone "el"
+        this.$el.html(template);
 
         return this;
     }

@@ -207,6 +207,7 @@ $(document).ready(function () {
         cy.edgehandles({
             enabled: true,
             toggleOffOnLeave: true,
+            hoverDelay: 0,
             stop: function (sourceNode) {// fired when edgehandles interaction is stopped (either complete with added edges or incomplete)
                 cy.edgehandles('disable')// closes edge-handle after adding an edge
             }

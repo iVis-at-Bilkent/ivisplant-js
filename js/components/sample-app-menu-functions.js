@@ -248,6 +248,10 @@ $(document).ready(function () {
                 .update() // update the elements in the graph with the new style
                 ;
     });
+    
+    $("#color-code-selected").click(function (evt) {
+        // TODO: color coding according to centrality
+    });
 
 
     $("#save-as-sbgnml").click(function (evt) {

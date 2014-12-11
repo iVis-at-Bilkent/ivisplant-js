@@ -191,6 +191,92 @@ var SBGNContainer = Backbone.View.extend({
                 cy.on('cxttap', 'node', function(event) {
                     var node = event.cyTarget;
 
+
+
+
+
+
+
+
+                    for (var a = 0; a <= 1; a++) {
+                        /*var options = {
+                         root: '#' + this.model._private.data.id,
+                         weight: function () {
+                         return this.data('width');
+                         },
+                         directed: false,
+                         alpha: 1
+                         };*/
+                        var undirectedDC = cy.elements().degreeCentrality({
+                            root: '#' + node.id(),
+                            weight: function() {
+                                return this.data('width');
+                            },
+                            directed: false,
+                            alpha: a
+                        });
+
+                        var directedDC = cy.elements().degreeCentrality({
+                            root: '#' + node.id(),
+                            weight: function() {
+                                return this.data('width');
+                            },
+                            directed: true,
+                            alpha: a
+                        });
+
+                        var normalizedUndirectedDC = cy.elements().degreeCentralityNormalized({
+                            weight: function() {
+                                return this.data('width');
+                            },
+                            directed: false,
+                            alpha: a
+                        });
+
+                        var normalizedDirectedDC = cy.elements().degreeCentralityNormalized({
+                            weight: function() {
+                                return this.data('width');
+                            },
+                            directed: true,
+                            alpha: a
+                        });
+                        
+                        var closeness = cy.elements().closenessCentrality({
+                            root: '#' + node.id(),
+                            weight: function() {
+                                return this.data('width');
+                            }
+                        });
+                        
+                        var normalizedCloseness = cy.elements().closenessCentralityNormalized({
+                            weight: function() {
+                                return this.data('width');
+                            }
+                        });
+
+                        alert("Node " + node.id() 
+                                + " for alpha = " + a
+                                + "\nDegree = " + undirectedDC.degree
+                                + "\nIndegree = " + directedDC.indegree
+                                + "\nOutdegree = " + directedDC.outdegree
+                                + "\nNormalized Degree = " + normalizedUndirectedDC.degree_n('#' + node.id()).toFixed(4)
+                                + "\nNormalized Indegree = " + normalizedDirectedDC.indegree_n('#' + node.id()).toFixed(4)
+                                + "\nNormalized Outdegree = " + normalizedDirectedDC.outdegree_n('#' + node.id()).toFixed(4)
+                                + "\n\nCloseness = " + closeness.toFixed(4)
+                                + "\nNormalized Closeness = " + normalizedCloseness.closeness_n('#' + node.id()).toFixed(4)
+                                );
+                    }
+
+
+
+
+
+
+
+
+                    return;
+                    
+                    
                     cy.getElementById(node.id()).qtip({
                         content: {
                             text: function(event, api)

@@ -109,7 +109,7 @@ var coseOptions = {
 
 
 var NotyView = Backbone.View.extend({
-    render: function () {
+    render: function() {
         //this.model["theme"] = " twitter bootstrap";
         this.model["layout"] = "bottomRight";
         this.model["timeout"] = 8000;
@@ -122,7 +122,7 @@ var NotyView = Backbone.View.extend({
 
 var SBGNContainer = Backbone.View.extend({
     cyStyle: correlationNetworkStyleSheet,
-    render: function () {
+    render: function() {
         (new NotyView({
             template: "#noty-info",
             model: {}
@@ -160,7 +160,7 @@ var SBGNContainer = Backbone.View.extend({
             },
             minZoom: 0.125,
             maxZoom: 16,
-            ready: function ()
+            ready: function()
             {
                 window.cy = this;
                 var tapped;
@@ -170,29 +170,30 @@ var SBGNContainer = Backbone.View.extend({
                 });
                 container.cytoscapePanzoom(panProps);
 
-                cy.on('tap', 'node', 'null', function (evt) {
+                cy.on('tap', 'node', 'null', function(evt) {
                     var node = evt.cyTarget;
                     tapped = node.id();
                     cy.$('#' + node.id()).select();
+
                 });
 
-                cy.on('mouseover', 'node', null, function (evt) {
+                cy.on('mouseover', 'node', null, function(evt) {
                     var node = evt.cyTarget;
                     cy.$('#' + node.id()).select();
                 });
 
-                cy.on('mouseout', 'node', null, function (evt) {
+                cy.on('mouseout', 'node', null, function(evt) {
                     var node = evt.cyTarget;
                     if (tapped != node.id())
                         cy.$('#' + node.id()).unselect();
                 });
 
-                cy.on('cxttap', 'node', function (event) {
+                cy.on('cxttap', 'node', function(event) {
                     var node = event.cyTarget;
 
                     cy.getElementById(node.id()).qtip({
                         content: {
-                            text: function (event, api)
+                            text: function(event, api)
                             {
 
                                 var info = (new BioGeneView(
@@ -202,7 +203,7 @@ var SBGNContainer = Backbone.View.extend({
                                         })).render();
                                 var html = $('#biogene-container').html();
                                 api.set('content.text', html);
-                                api.set('content.title',"Node ID: " + node._private.data.id);
+                                api.set('content.title', "Node ID: " + node._private.data.id);
                                 return _.template($("#biogene-container").html());
                             }
                         },
@@ -237,7 +238,7 @@ var SBGNContainer = Backbone.View.extend({
         container.cy(cyOptions);
         return this;
     },
-    setCoseLayout: function () {
+    setCoseLayout: function() {
         cy.layout(coseOptions);
         //cy.fit();
     }
@@ -262,26 +263,26 @@ var SBGNLayout = Backbone.View.extend({
         minTemp: 1.0
     },
     currentLayoutProperties: null,
-    initialize: function () {
+    initialize: function() {
         var self = this;
         self.copyProperties();
         self.template = _.template($("#layout-settings-template").html(), self.currentLayoutProperties);
     },
-    copyProperties: function () {
+    copyProperties: function() {
         this.currentLayoutProperties = _.clone(this.defaultLayoutProperties);
     },
-    applyLayout: function () {
+    applyLayout: function() {
         var options = this.currentLayoutProperties;
         cy.layout(options);
     },
-    render: function () {
+    render: function() {
         var self = this;
         self.template = _.template($("#layout-settings-template").html(), self.currentLayoutProperties);
         $(self.el).html(self.template);
 
         $(self.el).dialog();
 
-        $("#save-layout").die("click").live("click", function (evt) {
+        $("#save-layout").die("click").live("click", function(evt) {
             self.currentLayoutProperties.padding = document.getElementById("padding").value;
             self.currentLayoutProperties.refresh = document.getElementById("refresh").value;
             self.currentLayoutProperties.fit = document.getElementById("fit").value;
@@ -300,7 +301,7 @@ var SBGNLayout = Backbone.View.extend({
             $(self.el).dialog('close');
         });
 
-        $("#default-layout").die("click").live("click", function (evt) {
+        $("#default-layout").die("click").live("click", function(evt) {
             self.copyProperties();
             self.template = _.template($("#layout-settings-template").html(), self.currentLayoutProperties);
             $(self.el).html(self.template);
@@ -318,25 +319,25 @@ var SBGNNewNode = Backbone.View.extend({
         weight: 75,
         color: "red"
     },
-    initialize: function () {
+    initialize: function() {
         var self = this;
         self.template = _.template($("#node-addition-template").html(), self.currentNodeProperties);
         $(".basic").spectrum({
             color: "#f00",
-            change: function (color_) {
+            change: function(color_) {
                 $("#basic-log").text("change called: " + color_.toHexString());
                 currentNodeProperties.color = color_;
             }
         });
     },
-    render: function () {
+    render: function() {
         var self = this;
         self.template = _.template($("#node-addition-template").html(), self.currentNodeProperties);
         $(self.el).html(self.template);
 
         $(self.el).dialog();
 
-        $("#add-new-node").die("click").live("click", function (evt) {
+        $("#add-new-node").die("click").live("click", function(evt) {
             var c = $("#picker").spectrum("get");
             $(self.el).dialog('close');
 
@@ -353,7 +354,7 @@ var SBGNNewNode = Backbone.View.extend({
             });
         });
 
-        $("#cancel-node").die("click").live("click", function (evt) {
+        $("#cancel-node").die("click").live("click", function(evt) {
             $(self.el).dialog('close');
         });
 
@@ -362,7 +363,7 @@ var SBGNNewNode = Backbone.View.extend({
 });
 
 var BioGeneView = Backbone.View.extend({
-    render: function () {
+    render: function() {
         // pass variables in using Underscore.js template
         var variables = {
             nodeId: this.model._private.data.id,

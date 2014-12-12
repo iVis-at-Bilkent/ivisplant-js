@@ -6,7 +6,8 @@
 "name": "Glucose",
 "shape": "ellipse",
 "weight": 90,
-"color": "grey"
+"color": "grey",
+"centrality": "#D3D3D3"
 }
 },
 {
@@ -15,7 +16,8 @@
 "name": "Aspartic Acid",
 "shape": "triangle",
 "weight": 34,
-"color": "pink"
+"color": "pink",
+"centrality": "#D3D3D3"
 }
 }
 ],

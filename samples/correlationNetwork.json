@@ -7,7 +7,8 @@
                 "name": "Glucose",
                 "shape": "ellipse",
                 "weight": 90,
-                "color": "grey"
+                "color": "grey",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 334.79707710758015,
@@ -29,7 +30,8 @@
                 "name": "Aspartic Acid",
                 "shape": "triangle",
                 "weight": 34,
-                "color": "pink"
+                "color": "pink",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 341.01828021111515,
@@ -51,7 +53,8 @@
                 "name": "Serine",
                 "shape": "triangle",
                 "weight": 33,
-                "color": "pink"
+                "color": "pink",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 352.2722886132335,
@@ -73,7 +76,8 @@
                 "name": "Fructose",
                 "shape": "ellipse",
                 "weight": 92,
-                "color": "grey"
+                "color": "grey",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 176.96315354302303,
@@ -95,7 +99,8 @@
                 "name": "Glutamic Acid",
                 "shape": "triangle",
                 "weight": 40,
-                "color": "pink"
+                "color": "pink",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 412.42499778092264,
@@ -117,7 +122,8 @@
                 "name": "Glycine",
                 "shape": "triangle",
                 "weight": 32,
-                "color": "pink"
+                "color": "pink",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 381.5950680766875,
@@ -139,7 +145,8 @@
                 "name": "Citric Acid",
                 "shape": "triangle",
                 "weight": 56,
-                "color": "pink"
+                "color": "pink",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 428.0695991188224,
@@ -161,7 +168,8 @@
                 "name": "Malic Acid",
                 "shape": "rectangle",
                 "weight": 35,
-                "color": "yellow"
+                "color": "yellow",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 237.4300554190781,
@@ -183,7 +191,8 @@
                 "name": "Sodium",
                 "shape": "star",
                 "weight": 36,
-                "color": "brown"
+                "color": "brown",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 210.01341678962496,
@@ -205,7 +214,8 @@
                 "name": "Chloride",
                 "shape": "star",
                 "weight": 35,
-                "color": "brown"
+                "color": "brown",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 456.90560435801876,
@@ -227,7 +237,8 @@
                 "name": "Alanine",
                 "shape": "ellipse",
                 "weight": 32,
-                "color": "pink"
+                "color": "pink",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 491.9908925701499,
@@ -249,7 +260,8 @@
                 "name": "Fruit Color",
                 "shape": "rectangle",
                 "weight": 40,
-                "color": "red"
+                "color": "red",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 281.9841776204641,
@@ -271,7 +283,8 @@
                 "name": "Fruit Taste",
                 "shape": "rectangle",
                 "weight": 41,
-                "color": "red"
+                "color": "red",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 282.612036389938,
@@ -293,7 +306,8 @@
                 "name": "Fruit Smell",
                 "shape": "rectangle",
                 "weight": 41,
-                "color": "red"
+                "color": "red",
+				"centrality": "#D3D3D3"
             },
             "position": {
                 "x": 295.76852786933785,

@@ -34,6 +34,61 @@ $(document).ready(function () {
     var sbgnNewNodeProp = new SBGNNewNode({
         el: '#sbgn-newNode-table'
     });
+    var decimalToHexPadding = function (d) {
+        var hex = Number(d).toString(16);
+        var padding = 2;
+
+        while (hex.length < padding) {
+            hex = "0" + hex;
+        }
+
+        return hex;
+    };
+    // following function is adapted to this project from Paul's answer to the question at
+    // http://stackoverflow.com/questions/17242144/javascript-convert-hsb-hsv-color-to-rgb-accurately
+    var normalizedToColor = function (n) {
+        var r, g, b, i, f, p, q, t;
+
+        if (n >= 0 && n <= 1) {
+            h = (1 - n) / 3.5; // our target range for h value is 0 - 0.28 and in reverse order
+            s = 0.9;
+            v = 1;
+        } else {
+            return -1;
+        }
+
+        i = Math.floor(h * 6);
+        f = h * 6 - i;
+        p = v * (1 - s);
+        q = v * (1 - f * s);
+        t = v * (1 - (1 - f) * s);
+        switch (i % 6) {
+            case 0:
+                r = v, g = t, b = p;
+                break;
+            case 1:
+                r = q, g = v, b = p;
+                break;
+            case 2:
+                r = p, g = v, b = t;
+                break;
+            case 3:
+                r = p, g = q, b = v;
+                break;
+            case 4:
+                r = t, g = p, b = v;
+                break;
+            case 5:
+                r = v, g = p, b = q;
+                break;
+        }
+
+        r = Math.floor(r * 255);
+        g = Math.floor(g * 255);
+        b = Math.floor(b * 255);
+
+        return "#" + decimalToHexPadding(r) + decimalToHexPadding(g) + decimalToHexPadding(b);
+    };
 
     $("body").on("change", "#file-input", function (e) {
         if ($("#file-input").val() == "") {
@@ -248,11 +303,28 @@ $(document).ready(function () {
                 .update() // update the elements in the graph with the new style
                 ;
     });
-    
-    $("#color-code-selected").click(function (evt) {
-        // TODO: color coding according to centrality
+
+    $("#color-code-degree").click(function (evt) {
+        var centralities = cy.elements().degreeCentralityNormalized();
+
+        cy.nodes().forEach(function (ele) {
+            ele.data('centrality', normalizedToColor(centralities.degree_n(ele)));
+        });
     });
 
+    $("#color-code-closeness").click(function (evt) {
+        var centralities = cy.elements().closenessCentralityNormalized();
+
+        cy.nodes().forEach(function (ele) {
+            ele.data('centrality', normalizedToColor(centralities.closeness_n(ele)));
+        }); 
+    });
+    
+    $("#color-code-clear").click(function (evt) {
+        cy.nodes().forEach(function (ele) {
+            ele.data('centrality', '#D3D3D3');
+        }); 
+    });
 
     $("#save-as-sbgnml").click(function (evt) {
         var deneme = cy.json().elements;
@@ -278,6 +350,6 @@ $(document).ready(function () {
         expanderOpts.slicePoint = 2;
         expanderOpts.widow = 0;
     });
-    
+
 
 });

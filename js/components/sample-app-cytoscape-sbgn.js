@@ -20,7 +20,7 @@ var correlationNetworkStyleSheet = cytoscape.stylesheet()
             'color': 'black',
             'border-color': 'data(color)',
             'border-width': 2,
-            'background-color': 'lightgrey'
+            'background-color': 'data(centrality)'
         })
         .selector('edge')
         .css({

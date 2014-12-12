@@ -29,6 +29,7 @@ function txtToJsonText(csvText) {
             node.push('"name": "' + line[3] + '"');
             node.push('"shape": "' + line[4] + '"');
             node.push('"color": "' + line[5] + '"');
+            node.push('"centrality": "#D3D3D3"');
             node.push('"weight": ' + line[6]);
 
             if (line.length > 7) {

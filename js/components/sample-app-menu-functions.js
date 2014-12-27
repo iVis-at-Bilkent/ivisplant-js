@@ -320,6 +320,14 @@ $(document).ready(function () {
         }); 
     });
     
+    $("#color-code-betweenness").click(function (evt) {
+        var centralities = cy.elements().betweennessCentrality();
+
+        cy.nodes().forEach(function (ele) {
+            ele.data('centrality', normalizedToColor(centralities.betweenness_n(ele)));
+        }); 
+    });
+    
     $("#color-code-clear").click(function (evt) {
         cy.nodes().forEach(function (ele) {
             ele.data('centrality', '#D3D3D3');
